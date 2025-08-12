@@ -22,7 +22,6 @@ public static class GroupExtension
     public static void CallGroup<T>(this Node node, StringName methode, params Variant[] variants) where T : IGroup
     {
         node.GetTree().CallGroup<T>(methode, variants);
-        
     }
 
     public static void AddToGroup<T>(this Node node) where T : IGroup
