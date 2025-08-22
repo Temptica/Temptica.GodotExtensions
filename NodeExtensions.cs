@@ -4,8 +4,9 @@ namespace Temptica.GodotExtensions;
 
 public static class NodeExtensions
 {
-    public static List<T> GetAllChildren<T>(this Node node) where T : GodotObject
+    public static List<T> GetAllChildren<T>(this Node? node) where T : GodotObject
     {
+        if(node == null) return [];
         var children = node.GetChildren().ToList();
         var childrenOfT = children.OfType<T>().ToList();
 
