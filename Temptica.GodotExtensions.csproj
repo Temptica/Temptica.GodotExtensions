@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.4.0">
-
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -8,6 +7,8 @@
 
     <ItemGroup>
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
+      <PackageReference Update="GodotSharp" Version="4.6.0-dev.4" />
+      <PackageReference Update="Godot.SourceGenerators" Version="4.6.0-dev.4" />
     </ItemGroup>
 
 </Project>
