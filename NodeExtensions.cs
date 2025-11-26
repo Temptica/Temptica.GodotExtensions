@@ -16,4 +16,11 @@ public static class NodeExtensions
         }
         return childrenOfT;
     }
+    
+    public static bool HasChild(this Node node, Node child) => node.GetChildren().Any(n => n == child);
+    public static void RemoveChildIfExists(this Node node, Node child)
+    {
+        if (!node.HasChild(child)) return;
+        node.RemoveChild(child);
+    }
 }
