@@ -50,7 +50,7 @@ public static class GodotObjectExtensions
 	
 	public static async Task<TArg0?> ToSignalAsync<TArg0>(this GodotObject godotObject, StringName signal)
 	{
-		var results = await ToSignalAsync(godotObject, signal);
+		var results = await godotObject.ToSignalAsync(signal);
 
 		if (results.Length < 1)
 		{
@@ -66,7 +66,7 @@ public static class GodotObjectExtensions
 		StringName signal
 	)
 	{
-		var results = await ToSignalAsync(godotObject, signal);
+		var results = await godotObject.ToSignalAsync(signal);
 
 		if (results.Length < 2)
 		{
@@ -83,7 +83,7 @@ public static class GodotObjectExtensions
 		StringName signal
 	)
 	{
-		var results = await ToSignalAsync(godotObject, signal);
+		var results = await godotObject.ToSignalAsync(signal);
 
 		if (results.Length < 2)
 		{
@@ -108,7 +108,7 @@ public static class GodotObjectExtensions
 		{
 			case Variant.Type.Nil:
 				value = default;
-				return value != null;
+				return !Equals(value, default(TValue));
 
 			case Variant.Type.Bool:
 				if (typeof(TValue) != typeof(bool))
@@ -126,7 +126,7 @@ public static class GodotObjectExtensions
 					{
 						var castedEnum = Enum.ToObject(typeof(TValue), (int)variant);
 						value = (TValue)castedEnum;
-						return value != null;
+						return !Equals(value, default(TValue));
 					}
 					catch (InvalidCastException)
 					{
@@ -203,7 +203,7 @@ public static class GodotObjectExtensions
 				if (typeof(TValue) == typeof(string))
 				{
 					value = (TValue)(object)variant.AsString();
-					return value != null;
+					return !Equals(value, default(TValue));
 				}
 
 				break;
@@ -241,10 +241,9 @@ public static class GodotObjectExtensions
 			case Variant.Type.PackedVector3Array:
 			case Variant.Type.PackedColorArray:
 			case Variant.Type.Max:
-				break;
 			case Variant.Type.PackedVector4Array:
 			default:
-				throw new NotImplementedException();
+				break;
 		}
 
 		throw new NotImplementedException();
