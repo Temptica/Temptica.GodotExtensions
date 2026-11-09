@@ -31,4 +31,10 @@ public static class GroupExtension
         var groupName = typeof(T).Name[..^Length];
         node.AddToGroup(groupName);
     }
+    
+    public static List<NodeType> GetNodesInGroup<NodeType, GroupType>(this Node node) where NodeType : Node where GroupType : IGroup
+    {
+        var groupName = typeof(GroupType).Name[..^Length];
+        return node.GetTree().GetNodesInGroup(groupName).OfType<NodeType>().ToList();
+    }
 }
